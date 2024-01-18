@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Order App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container mt-4">
+      <form action="/admin/saveExpense" method="POST">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label for="amount" class="form-label"
+              >Choose Expense_Amount:</label
+            >
+            <input
+              type="number"
+              id="amount"
+              name="amount"
+              class="form-control"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="desc" class="form-label">Choose a Description:</label>
+            <input
+              type="text"
+              id="desc"
+              name="description"
+              class="form-control"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="category" class="form-label">Choose a Category:</label>
+            <select id="category" name="category" class="form-select">
+              <option value="food">food</option>
+              <option value="cloth">cloth</option>
+              <option value="fuel">fuel</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary mt-2">
+          submit
+        </button>
+      </form>
+      <h1 class="mt-2">All Items</h1>
+      <ul id="itemList">
+        <% for(let expense of expenses) { %>
+        <li>
+          <%= `${expense.amount} ${expense.description} ${expense.category}` %>
+          <form method="post" action="/admin/addexpense/<%= expense.id %>">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
